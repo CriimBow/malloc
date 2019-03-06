@@ -52,6 +52,7 @@ void				merge_previous(t_alloc_block *b, t_alloc_block *prev);
 void				print_hex(long nb);
 size_t				size_block(void *ptr);
 void				*split_block(t_alloc_block *block, size_t size_needed);
+char				is_continuous(t_alloc_block *b1, t_alloc_block *b2);
 
 void				*general_alloc(t_alloc_block *alloc, size_t size);
 

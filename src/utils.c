@@ -88,7 +88,7 @@ size_t			size_block(void *ptr)
 
 void			merge_previous(t_alloc_block *b, t_alloc_block *prev)
 {
-	if (b && b->free && prev && prev->free)
+	if (b && b->free && prev && prev->free && is_continuous(prev, b))
 	{
 		prev->next = b->next;
 		prev->size = prev->size + b->size + sizeof(t_alloc_block);

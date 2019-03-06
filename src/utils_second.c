@@ -31,3 +31,13 @@ void	*split_block(t_alloc_block *block, size_t size_needed)
 	block->next->next = save_next;
 	return ((void*)(block + 1));
 }
+
+/*
+** is_continuous checks if addresses of b1 and b2 are consecutive
+*/
+
+char	is_continuous(t_alloc_block *b1, t_alloc_block *b2)
+{
+	return ((unsigned long)b1 - (unsigned long)b2
+	== sizeof(t_alloc_block) + b1->size);
+}

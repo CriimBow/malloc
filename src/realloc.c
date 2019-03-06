@@ -68,7 +68,7 @@ static void	*find_merge(t_alloc_block *b, void *ptr, size_t size,
 		return (NULL);
 	if (size > old_size)
 	{
-		if (find->next && find->next->free)
+		if (find->next && find->next->free && is_continuous(find, find->next))
 		{
 			if (find->next->size + find->size > size)
 				split_block(find->next, size - old_size);

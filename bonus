@@ -1,0 +1,4 @@
+- thread safe
+- défragmentation lorsqu'on free small et free
+- calloc
+- affichage de la mémoire libre

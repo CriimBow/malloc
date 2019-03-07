@@ -50,7 +50,7 @@ t_allocations		*init_n_ret(size_t size);
 void				thread_protection(char status);
 void				merge_previous(t_alloc_block *b, t_alloc_block *prev);
 void				print_hex(long nb);
-void    			ft_putnbr(unsigned long long nb);
+void				ft_putnbr(unsigned long long nb);
 
 size_t				size_block(void *ptr);
 void				*split_block(t_alloc_block *block, size_t size_needed);

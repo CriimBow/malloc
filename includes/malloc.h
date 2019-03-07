@@ -64,4 +64,6 @@ void				*calloc(size_t num, size_t size);
 void				show_alloc_mem(void);
 void				show_alloc_free_mem(void);
 
+void				fuck_norm(t_allocations *g_allocs);
+
 #endif

@@ -40,7 +40,7 @@ void						show_alloc_free_mem(void)
 
 	total = 0;
 	thread_protection(0);
-	if (!(init_n_ret(0)) || !(init_n_ret(0)->tiny) || !(init_n_ret(0)->small))
+	if (!(init_n_ret(0)))
 		return ;
 	ft_putstr("TINY : 0x");
 	print_hex((long)(init_n_ret(0)->tiny));

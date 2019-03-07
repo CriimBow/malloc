@@ -38,6 +38,6 @@ void	*split_block(t_alloc_block *block, size_t size_needed)
 
 char	is_continuous(t_alloc_block *b1, t_alloc_block *b2)
 {
-	return ((unsigned long)b1 - (unsigned long)b2
+	return ((unsigned long)b2 - (unsigned long)b1
 	== sizeof(t_alloc_block) + b1->size);
 }

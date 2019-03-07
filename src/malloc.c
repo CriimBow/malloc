@@ -28,14 +28,14 @@ t_allocations	*init_n_ret(size_t size)
 	{
 		if ((g_allocs = mmap(0, sizeof(t_allocations), PROT_READ | PROT_WRITE,
 				MAP_ANON | MAP_PRIVATE, -1, 0)) == MAP_FAILED)
-			exit(1);
+			return (NULL);
 		ft_bzero(g_allocs, sizeof(t_allocations));
 	}
 	if (size > 0 && size <= TINY_SIZE && !(g_allocs->tiny))
 	{
 		if ((g_allocs->tiny = (t_alloc_block*)mmap(NULL, TINY_F_MAP, PROT_READ
 		| PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0)) == MAP_FAILED)
-			exit(1);
+			return (NULL);
 		g_allocs->tiny->size = TINY_F_MAP;
 		g_allocs->tiny->free = 1;
 		g_allocs->tiny->next = NULL;
@@ -44,7 +44,7 @@ t_allocations	*init_n_ret(size_t size)
 	{
 		if ((g_allocs->small = (t_alloc_block*)mmap(NULL, SMALL_F_MAP, PROT_READ
 		| PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0)) == MAP_FAILED)
-			exit(1);
+			return (NULL);
 		g_allocs->small->size = SMALL_F_MAP;
 		g_allocs->small->free = 1;
 		g_allocs->small->next = NULL;
@@ -69,7 +69,7 @@ static void		*increase_zone(t_alloc_block *alloc, size_t size)
 	{
 		if ((to_ret->next = (t_alloc_block*)mmap(NULL, TINY_F_MAP, PROT_READ |
 		PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0)) == MAP_FAILED)
-			exit(1);
+			return (NULL);
 		to_ret->next->size = TINY_F_MAP;
 		to_ret->next->free = 1;
 		to_ret->next->next = NULL;
@@ -78,7 +78,7 @@ static void		*increase_zone(t_alloc_block *alloc, size_t size)
 	{
 		if ((to_ret->next = (t_alloc_block*)mmap(NULL, SMALL_F_MAP, PROT_READ
 		| PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0)) == MAP_FAILED)
-			exit(1);
+			return (NULL);
 		to_ret->next->size = SMALL_F_MAP;
 		to_ret->next->free = 1;
 		to_ret->next->next = NULL;

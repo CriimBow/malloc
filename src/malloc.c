@@ -36,9 +36,7 @@ t_allocations	*init_n_ret(size_t size)
 		if ((g_allocs->tiny = (t_alloc_block*)mmap(NULL, TINY_F_MAP, PROT_READ
 		| PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0)) == MAP_FAILED)
 			return (NULL);
-		g_allocs->tiny->size = TINY_F_MAP;
-		g_allocs->tiny->free = 1;
-		g_allocs->tiny->next = NULL;
+		fuck_norm(g_allocs);
 	}
 	else if (size > TINY_SIZE && size <= SMALL_SIZE && !(g_allocs->small))
 	{

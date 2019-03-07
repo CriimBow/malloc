@@ -41,3 +41,10 @@ char	is_continuous(t_alloc_block *b1, t_alloc_block *b2)
 	return ((unsigned long)b2 - (unsigned long)b1
 	== sizeof(t_alloc_block) + b1->size);
 }
+
+void	fuck_norm(t_allocations *g_allocs)
+{
+	g_allocs->tiny->size = TINY_F_MAP;
+	g_allocs->tiny->free = 1;
+	g_allocs->tiny->next = NULL;
+}

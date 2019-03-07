@@ -22,11 +22,13 @@ static unsigned long long	count_print_alloc(t_alloc_block *b)
 	{
 		if (!(b->free))
 		{
-			ft_printf("0x");
+			ft_putstr("0x");
 			print_hex((long)((void*)(b + 1)));
-			ft_printf(" - ");
+			ft_putstr(" - ");
 			print_hex((long)((void*)(b + 1) + b->size));
-			ft_printf(" : %li octets alloués\n", b->size);
+			ft_putstr(" : ");
+			ft_putnbr(b->size);
+			ft_putstr(" octets alloués\n");
 			total += b->size;
 		}
 		b = b->next;
@@ -42,18 +44,20 @@ void						show_alloc_mem(void)
 	thread_protection(0);
 	if (!(init_n_ret(0)))
 		return ;
-	ft_printf("TINY : 0x");
+	ft_putstr("TINY : 0x");
 	print_hex((long)(init_n_ret(0)->tiny));
-	ft_printf("\n");
+	ft_putstr("\n");
 	total += count_print_alloc(init_n_ret(0)->tiny);
-	ft_printf("SMALL : 0x");
+	ft_putstr("SMALL : 0x");
 	print_hex((long)(init_n_ret(0)->small));
-	ft_printf("\n");
+	ft_putstr("\n");
 	total += count_print_alloc(init_n_ret(0)->small);
-	ft_printf("LARGE : 0x");
+	ft_putstr("LARGE : 0x");
 	print_hex((long)(init_n_ret(0)->large));
-	ft_printf("\n");
+	ft_putstr("\n");
 	total += count_print_alloc(init_n_ret(0)->large);
-	ft_printf("Total : %i octets\n", total);
+	ft_putstr("Total : ");
+	ft_putnbr(total);
+	ft_putstr(" octets\n");
 	thread_protection(1);
 }

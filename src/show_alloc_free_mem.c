@@ -20,14 +20,16 @@ static unsigned long long	count_print_alloc(t_alloc_block *b)
 	total = 0;
 	while (b)
 	{
-		ft_printf("0x");
+		ft_putstr("0x");
 		print_hex((long)((void*)(b + 1)));
-		ft_printf(" - ");
+		ft_putstr(" - ");
 		print_hex((long)((void*)(b + 1) + b->size));
+		ft_putstr(" : ");
+		ft_putnbr(b->size);
 		if (!(b->free))
-			ft_printf(" : %li octets alloués\n", b->size);
+			ft_putstr(" octets alloués\n");
 		else
-			ft_printf(" : %li octets libres\n", b->size);
+			ft_putstr(" octets libres\n");
 		total += b->size;
 		b = b->next;
 	}
@@ -54,6 +56,8 @@ void						show_alloc_free_mem(void)
 	print_hex((long)(init_n_ret(0)->large));
 	ft_putstr("\n");
 	total += count_print_alloc(init_n_ret(0)->large);
-	ft_printf("Total : %llu octets\n", total);
+	ft_putstr("Total : ");
+	ft_putnbr(total);
+	ft_putstr(" octets\n");
 	thread_protection(1);
 }

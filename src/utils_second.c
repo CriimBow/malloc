@@ -48,3 +48,14 @@ void	fuck_norm(t_allocations *g_allocs)
 	g_allocs->tiny->free = 1;
 	g_allocs->tiny->next = NULL;
 }
+
+void	ft_putnbr(unsigned long long nb)
+{
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else
+		ft_putchar(nb + '0');
+}
